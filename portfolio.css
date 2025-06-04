@@ -1,0 +1,474 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  background-color: black;
+}
+
+
+/* <===== Navigation Bar ==========================================> */
+.navbar-shadow {
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+}
+
+#navigBar {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+ul li a {
+  color: rgb(255, 255, 255);
+  font-family: 'Questrial';
+  font-weight: 450;
+}
+
+.nav-link.active{
+  color: rgb(255, 255, 255);
+}
+
+.nav-link:hover{
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(233, 233, 233);
+  border-radius: 11px;
+}
+
+#search-bar {
+  border-radius: 12px;
+  border-color: rgb(255, 255, 255);
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+}
+
+#butones {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: rgb(255, 255, 255);
+}
+
+
+/* <===== Introduction ==========================================> */
+.hero {
+  min-height: 80vh;
+}
+
+.hero p{
+  font-family: 'Questrial';
+}
+
+.hero h1{
+  font-family: 'Rozha One';
+}
+
+.profile-img {
+  width: 220px;
+  border: 3px solid transparent;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px 5px #6B8E23;
+  border-color: #6B8E23;
+}
+
+.title-highlight {
+  color: white;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.lead {
+  color: #eee;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Skill Dots Animation */
+#section{
+  border: solid 2px green;
+  border-radius: 20px;
+}
+
+.container h2{
+  font-family: 'Rozha One';
+}
+
+.container h5{
+  font-family: 'Questrial' ;
+}
+
+.skill-dot {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  background: conic-gradient(transparent 0% 80%, #6B8E23 80% 100%);
+  animation: rotateDot 3s linear infinite;
+}
+
+.skill-dot::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background: #111;
+  border-radius: 50%;
+}
+
+.html-dot { background: conic-gradient(transparent 0% 15%, #E44D26 15% 100%); }
+.css-dot { background: conic-gradient(transparent 0% 30%, #2965F1 30% 100%); }
+.js-dot { background: conic-gradient(transparent 0% 60%, #F0DB4F 60% 100%); }
+.bs-dot { background: conic-gradient(transparent 0% 75%, #7952B3 75% 100%); }
+
+@keyframes rotateDot {
+  100% { transform: rotate(360deg); }
+}
+
+
+/* <===== Timeline ==========================================> */
+#journey p{
+  color: white;
+}
+.timeline-with-images {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 100px;
+}
+
+.timeline-row {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-year {
+  position: absolute;
+  left: -100px;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #6B8E23;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 5px rgba(107, 142, 35, 0.2);
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-img-container {
+  overflow: hidden;
+  height: 100%;
+}
+
+.timeline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.timeline-card:hover .timeline-img {
+  transform: scale(1.05);
+}
+
+.timeline-content {
+  padding: 20px;
+  height: 100%;
+}
+
+.timeline-content h5 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.company {
+  color: #6B8E23;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+
+/* <===== Connector ==========================================> */
+.timeline-row:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: -60px;
+  top: 80px;
+  bottom: -40px;
+  width: 2px;
+  background: rgba(107, 142, 35, 0.5);
+}
+
+/* <===== Responsive Adj. ==========================================> */
+@media (max-width: 768px) {
+  .timeline-with-images {
+    padding-left: 0;
+  }
+  
+  .timeline-year {
+    position: relative;
+    left: 0;
+    margin-bottom: 15px;
+  }
+  
+  .timeline-row:not(:last-child)::after {
+    display: none;
+  }
+  
+  .timeline-img {
+    height: 200px;
+  }
+}
+
+
+/* <===== Footer ==========================================> */
+.footer-section {
+  background: rgba(10, 10, 10, 0.95);
+  color: #eee;
+  padding: 3rem 0 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-column {
+  padding: 0 1rem;
+  font-family: 'Questrial';
+}
+
+.footer-heading {
+  color: #6B8E23;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #6B8E23;
+}
+
+.footer-description {
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+
+/* <===== Socmed Icons ==========================================> */
+.social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 1.5rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6B8E23;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #6B8E23;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(107, 142, 35, 0.3);
+}
+
+
+/* <===== Contact Lists ==========================================> */
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-contact-list li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-contact-list i {
+  color: #6B8E23;
+  width: 20px;
+  text-align: center;
+}
+
+.footer-contact-list a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact-list a:hover {
+  color: #6B8E23;
+}
+
+
+/* <===== Quick Links ==========================================> */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #eee;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-links a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #6B8E23;
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #6B8E23;
+}
+
+.footer-links a:hover::before {
+  width: 100%;
+}
+
+
+/* <===== Footer ==========================================> */
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* <===== Year ==========================================> */
+#year {
+  font-weight: bold;
+}
+
+
+/* <===== Map ==========================================> */
+.map-container {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.portfolio-map {
+  height: 400px;
+  width: 100%;
+  background: #222;
+}
+
+.map-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 6px;
+  color: white;
+  max-width: 250px;
+  z-index: 1000;
+}
+
+.leaflet-control-attribution {
+  background: rgba(0,0,0,0.7) !important;
+  color: #aaa !important;
+  font-size: 11px !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(0,0,0,0.8) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(0,0,0,0.8) !important;
+}
+
+
+#binaryRain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+}

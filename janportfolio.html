@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rozha+One&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Molle&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="portfolio.css">
+
+  <link rel="stylesheet" href="webdevjansen/bootstrap.css">
+  <script src="webdevjansen/jquery.min.js"></script>
+  <script src="webdevjansen/popper.min.js"></script>
+  <script src="webdevjansen/bootstrap.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</head>
+<body style="background-color: black;">
+  <script type="text/javascript">
+    $ (window).ready(function(){
+      
+
+      window.addEventListener('scroll', function () {
+        var navbar = document.getElementById('navigBar');
+        if (window.scrollY > 0) {
+            navbar.classList.add('navbar-shadow');
+        } else {
+            navbar.classList.remove('navbar-shadow');
+        }
+    });
+
+  const canvas = document.getElementById('binaryRain');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    
+    const binary = '01';
+    const fontSize = 15;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = [];
+    
+    
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * -canvas.height;
+    }
+    
+    function draw() {
+      
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#00ff00';
+      ctx.font = fontSize + 'px monospace';
+      
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary.charAt(Math.floor(Math.random() * binary.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    
+    setInterval(draw, 33);
+    
+    window.addEventListener('resize', function() {
+      resizeCanvas();
+    });
+  }
+
+
+  function initMap() {
+  
+  const tebengCoords = [16.0439, 120.3327];
+  
+  
+  const map = L.map('portfolio-map').setView(tebengCoords, 15);
+
+  
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+  
+  const myIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+  });
+
+  
+  L.marker(tebengCoords, { icon: myIcon })
+    .addTo(map)
+    .bindPopup("<b>Tebeng, Dagupan City</b><br>My location in Pangasinan");
+}
+
+
+window.addEventListener('load', initMap);
+
+
+
+
+    });
+  </script>
+  
+  <nav id="navigBar" class="container-fluid navbar navbar-expand-sm text-light pb-1 d-flex fixed-top" style="white-space: nowrap;">
+    <div class="webLogo">
+      <a href="jansenWeb.html">
+        <img class="ml-3" src="images/cat.png" alt="pusa" style="height: 45px;">
+      </a>
+    </div>
+    <button class="navbar-toggler ml-auto mr-3" type="button" data-toggle="collapse" data-target="#navtexts">
+      <i class="fas fa-bars" style="font-size: 24px; color: #333;"></i>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navtexts">
+      <ul class="navbar-nav orange-text">
+        <li class="nav-item ml-5 mr-5">
+          <a class="nav-link active" href="jansenWeb.html">Home</a>
+        </li>
+        <li class="nav-item dropdown ml-5 mr-5">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" role="button" data-toggle="dropdown">Services</a>
+          <div class="dropdown-menu">
+            <a target="_blank" class="dropdown-item" href="https://www.leagueoflegends.com/en-us/">League of Legends</a>
+            <a target="_blank" class="dropdown-item" href="https://www.mortalkombat.com/en-us">Mortal Kombat</a>
+            <a target="_blank" class="dropdown-item" href="https://www.minecraft.net/en-us">Minecraft</a>
+          </div>
+        </li>
+      </ul>
+      <form class="d-flex ms-auto ml-5">
+        <input id="search-bar" class="form-control me-2" placeholder="Search">
+        <button id="butones" class="btn" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <section class="hero container d-flex flex-column flex-md-row align-items-center justify-content-center text-center text-md-left py-5">
+    <div class="mb-4 mb-md-0">
+      <img src="images/jansen.jpg" alt="Jansen Ambeguia" class="profile-img rounded-circle shadow">
+    </div>
+    <div class="ml-md-5 fade-in">
+      <h1 class="display-4 font-weight-bold title-highlight mb-3">I'm Jansen Ambeguia!</h1>
+      <p class="lead text-light">A dedicated programmer who finds joy in clean code, solving problems, and creating things that matter.</p>
+    </div>
+  </section>
+
+
+
+
+<section id="section" class="container py-5 text-center">
+  <h2 class="text-center mb-5 title-highlight">Core Skills</h2>
+  <div class="row justify-content-center">
+    <div class="col-6 col-md-3 mb-4">
+      <div class="skill-item text-center">
+        <div class="skill-dot html-dot"></div>
+        <h5 class="mt-3 text-light">HTML5</h5>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3 mb-4">
+      <div class="skill-item text-center">
+        <div class="skill-dot css-dot"></div>
+        <h5 class="mt-3 text-light">CSS3</h5>
+      </div>
+    </div>
+    <div class="col-6 col-md-3 mb-4">
+      <div class="skill-item text-center">
+        <div class="skill-dot js-dot"></div>
+        <h5 class="mt-3 text-light">JavaScript</h5>
+      </div>
+    </div>
+    <div class="col-6 col-md-3 mb-4">
+      <div class="skill-item text-center">
+        <div class="skill-dot bs-dot"></div>
+        <h5 class="mt-3 text-light">Bootstrap</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="container py-5">
+  <h2 class="text-center mb-5 title-highlight">My Journey</h2>
+  <div class="timeline-with-images">
+
+    <div class="timeline-row">
+      <div class="timeline-year">
+        <span>2031</span>
+      </div>
+      <div class="timeline-card">
+        <div class="row no-gutters">
+          <div class="col-md-4 timeline-img-container">
+            <img src="images/sendv.jpg" alt="Current Work" class="timeline-img">
+          </div>
+          <div class="col-md-8">
+            <div class="timeline-content">
+              <h5>Senior Developer</h5>
+              <p class="company">Google</p>
+              <p class="text-white">Leading frontend development team and implementing new frameworks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">
+        <span>2029</span>
+      </div>
+      <div class="timeline-card">
+        <div class="row no-gutters">
+          <div class="col-md-4 timeline-img-container">
+            <img src="images/webdv.jpg" alt="Previous Work" class="timeline-img">
+          </div>
+          <div class="col-md-8">
+            <div class="timeline-content">
+              <h5>Web Developer</h5>
+              <p class="company">Meta</p>
+              <p class="text-white">Built responsive websites and web applications for clients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">
+        <span>2027</span>
+      </div>
+      <div class="timeline-card">
+        <div class="row no-gutters">
+          <div class="col-md-4 timeline-img-container">
+            <img src="images/gradpic.jpg" alt="Education" class="timeline-img">
+          </div>
+          <div class="col-md-8">
+            <div class="timeline-content">
+              <h5>Computer Science Degree</h5>
+              <p class="company">University of Luzon</p>
+              <p class="text-white">Graduated with honors specializing in web technologies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section class="container py-5">
+  <h2 class="text-center mb-4 title-highlight">My Location</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="map-container shadow-sm rounded">
+        <div id="portfolio-map" class="portfolio-map"></div>
+        <div class="map-overlay p-3">
+          <h5><i class="fas fa-map-marker-alt text-danger mr-2"></i>Tebeng, Dagupan City</h5>
+          <p class="mb-0 small">Pangasinan, Philippines</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer id="footer" class="footer-section">
+  <div class="container">
+    <div class="footer-content">
+      
+      <div class="footer-column">
+        <h4 class="footer-heading">Jansen Ambeguia</h4>
+        <p class="footer-description">A dedicated programmer who finds joy in clean code, solving problems, and creating things that matter.</p>
+        <div class="social-media">
+          <a target="_blank" href="https://github.com/yanesu" class="social-icon"><i class="fab fa-github"></i></a>
+          <a target="_blank" href="https://www.facebook.com/janseyn.lopez" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a target="_blank" href="https://x.com/sh_iing?s=21" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="https://www.instagram.com/g.ansiin?igsh=MXkwN3I5ZG1mZnB1Nw%3D%3D&utm_source=qr" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="footer-heading">Contact Me</h4>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-envelope"></i> <a href="mailto:jansen.ambeguia1@gmail.com">jansen.ambeguia1@gmail.com</a></li>
+          <li><i class="fas fa-phone"></i> <a href="tel:+1234567890">+63 (963) 567-890</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Binmaley, Philippines</li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="jansenWeb.html">Home</a></li>
+          <li><a href="jansenWeb.html#blogposts">Blog Posts</a></li>
+          <li><a href="#section">Skills</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Jansen Ambeguia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+  <canvas id="binaryRain"> </canvas>
+</body>
+</html>
